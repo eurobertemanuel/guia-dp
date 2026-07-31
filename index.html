@@ -199,6 +199,7 @@
     <div class="nav-links">
       <button class="nav-btn active" data-page="inicio">Início</button>
       <button class="nav-btn" data-page="estudar">Estudar</button>
+      <button class="nav-btn" data-page="calculadora">Calculadora</button>
       <button class="nav-btn" data-page="avaliacao">Avaliação</button>
     </div>
   </div>
@@ -221,7 +222,7 @@
 
     <div class="card">
       <h2>Como funciona</h2>
-      <p>Estude os 8 tópicos e use a <strong>calculadora</strong> na aba Estudar — pratique quantas questões quiser por tema, sem afetar nenhuma pontuação. Quando se sentir pronto, faça a <strong>Avaliação</strong> — sorteia 10 questões aleatórias de todo o banco, misturando as matérias — pra testar o quanto você realmente absorveu. Em breve, com o Firebase, dá pra salvar seu histórico de avaliações e acompanhar sua evolução.</p>
+      <p>Estude os 8 tópicos e use a <strong>calculadora</strong> na aba própria — pratique quantas questões quiser por tema, sem afetar nenhuma pontuação. Quando se sentir pronto, faça a <strong>Avaliação</strong> — sorteia 10 questões aleatórias de todo o banco, misturando as matérias — pra testar o quanto você realmente absorveu. Em breve, com o Firebase, dá pra salvar seu histórico de avaliações e acompanhar sua evolução.</p>
       <div class="btn-row">
         <button class="btn" id="heroStartBtn">Iniciar avaliação →</button>
       </div>
@@ -237,19 +238,6 @@
 
     <div id="materias-list"></div>
 
-    <div class="materia-card tool-card">
-      <div class="materia-head" data-tool="calc">
-        <div class="materia-title">🧮 Calculadora de Folha de Pagamento</div>
-        <div class="materia-toggle" id="calcToggleLabel">abrir ＋</div>
-      </div>
-      <div class="materia-body" id="calc-body">
-        <div class="calc-frame-wrap">
-          <iframe class="calc-frame" src="calculadora.html" title="Calculadora de Folha de Pagamento"></iframe>
-        </div>
-        <p class="fnote">Salário mensal, férias e 13º com as tabelas oficiais de 2026 (INSS, IRRF com redutor da Lei 15.270/2025, e FGTS).</p>
-      </div>
-    </div>
-
     <!-- shared practice quiz area -->
     <div class="card" id="practice-card" style="display:none;">
       <div class="progress-bar"><div class="progress-fill" id="pProgressFill"></div></div>
@@ -263,6 +251,19 @@
           <button class="btn secondary small" id="pStopBtn">Encerrar prática</button>
           <button class="btn small" id="pNextBtn" style="display:none;">Próxima →</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CALCULADORA ================= -->
+  <div class="page" id="page-calculadora">
+    <div class="card" style="margin-top:0;">
+      <h2>🧮 Calculadora de Folha de Pagamento</h2>
+      <p>Salário mensal, férias e 13º com as tabelas oficiais de 2026 (INSS, IRRF com redutor da Lei 15.270/2025, e FGTS).</p>
+    </div>
+    <div class="materia-card tool-card">
+      <div class="calc-frame-wrap" style="margin:0;">
+        <iframe class="calc-frame" src="calculadora.html" title="Calculadora de Folha de Pagamento"></iframe>
       </div>
     </div>
   </div>
@@ -514,14 +515,6 @@ document.querySelectorAll('[data-practice]').forEach(btn=>{
     e.stopPropagation();
     startPractice(btn.dataset.practice);
   });
-});
-
-// toggle for calculator tool card
-document.querySelector('.materia-head[data-tool="calc"]').addEventListener('click', ()=>{
-  const body = document.getElementById('calc-body');
-  const label = document.getElementById('calcToggleLabel');
-  const isOpen = body.classList.toggle('open');
-  label.textContent = isOpen ? 'fechar －' : 'abrir ＋';
 });
 
 // ================= PRACTICE QUIZ (Estudar tab) =================
